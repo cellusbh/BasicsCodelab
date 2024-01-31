@@ -151,9 +151,9 @@ private fun Greeting(
     Card(
         colors = CardDefaults.cardColors(
             containerColor = if (isSystemInDarkTheme()) {
-                Color(0xFFFFEB3B)
+                Color(0x77FFEB3B)
             } else {
-                Color(0x5BFFEB3B)
+                Color(0xFFFFEB3B)
             }
         ),
         modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp)
