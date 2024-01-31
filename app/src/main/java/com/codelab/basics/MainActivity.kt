@@ -93,7 +93,8 @@ fun MyApp(modifier: Modifier = Modifier) {
 @Composable
 fun OnboardingScreen(
     onContinueClicked: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+
 ) {
 
     Column(
@@ -101,13 +102,13 @@ fun OnboardingScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Welcome to the Basics Codelab!")
+        Text("Vencer, vencer, vencer,")
         Button(
             modifier = Modifier
                 .padding(vertical = 24.dp),
             onClick = onContinueClicked
         ) {
-            Text("Continue")
+            Text("este é o nosso ideal!")
         }
     }
 
@@ -116,7 +117,7 @@ fun OnboardingScreen(
 @Composable
 private fun Greetings(
     modifier: Modifier = Modifier,
-    names: List<String> = List(1000) { "$it" }
+    names: List<String> = List(14) { "$it" }
 ) {
     LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
         items(items = names) { name ->
@@ -125,36 +126,16 @@ private fun Greetings(
     }
 }
 
-object ColorScheme {
-    val DarkColorScheme = darkColorScheme(
-        surface = DarkYellow,
-        onSurface = DarkYellow,
-        primary = DarkYellow,
-        onPrimary = Chartreuse
-    )
-
-    val LightColorScheme = lightColorScheme(
-        surface = Yellow,
-        onSurface = Yellow,
-        primary = Yellow,
-        onPrimary = Navy
-    )
-}
-
 @Composable
 private fun Greeting(
     name: String,
-    modifier: Modifier = Modifier,
-    lightColorScheme: ColorScheme = MaterialTheme.colorScheme,
-    darkColorScheme: ColorScheme = MaterialTheme.colorScheme
-) {
+    modifier: Modifier = Modifier) {
     Card(
         colors = CardDefaults.cardColors(
             containerColor = if (isSystemInDarkTheme()) {
-                Color(0x77FFEB3B)
+                Color.Yellow
             } else {
-                Color(0xFFFFEB3B)
-            }
+                Color.Gray}
         ),
         modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
@@ -171,8 +152,8 @@ private fun CardContent(name: String) {
             .padding(12.dp)
             .animateContentSize(
                 animationSpec = spring(
-                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                    stiffness = Spring.StiffnessLow
+                    dampingRatio = Spring.DampingRatioHighBouncy,
+                    stiffness = Spring.StiffnessVeryLow
                 )
             )
     ) {
@@ -181,7 +162,7 @@ private fun CardContent(name: String) {
                 .weight(1f)
                 .padding(12.dp)
         ) {
-            Text(text = "Hello, ")
+            Text(text = "Clube Atlético Mineiro, ")
             Text(
                 text = name, style = MaterialTheme.typography.headlineMedium.copy(
                     fontWeight = FontWeight.ExtraBold
@@ -189,9 +170,7 @@ private fun CardContent(name: String) {
             )
             if (expanded) {
                 Text(
-                    text = ("Composem ipsum color sit lazy, " +
-                            "padding theme elit, sed do bouncy. ").repeat(4),
-                )
+                    text = ("uma vez até morrer!")                )
             }
         }
         IconButton(onClick = { expanded = !expanded }) {
