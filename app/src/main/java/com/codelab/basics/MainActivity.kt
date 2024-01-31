@@ -23,6 +23,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,11 +37,15 @@ import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -48,18 +53,24 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.codelab.basics.ui.theme.BasicsCodelabTheme
+import com.codelab.basics.ui.theme.Chartreuse
+import com.codelab.basics.ui.theme.DarkYellow
+import com.codelab.basics.ui.theme.Navy
+import com.codelab.basics.ui.theme.Yellow
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             BasicsCodelabTheme {
-                MyApp(modifier = Modifier.fillMaxSize())
+                MyApp(
+                    modifier = Modifier.fillMaxSize())
             }
         }
     }
@@ -114,11 +125,36 @@ private fun Greetings(
     }
 }
 
+object ColorScheme {
+    val DarkColorScheme = darkColorScheme(
+        surface = DarkYellow,
+        onSurface = DarkYellow,
+        primary = DarkYellow,
+        onPrimary = Chartreuse
+    )
+
+    val LightColorScheme = lightColorScheme(
+        surface = Yellow,
+        onSurface = Yellow,
+        primary = Yellow,
+        onPrimary = Navy
+    )
+}
+
 @Composable
-private fun Greeting(name: String, modifier: Modifier = Modifier) {
+private fun Greeting(
+    name: String,
+    modifier: Modifier = Modifier,
+    lightColorScheme: ColorScheme = MaterialTheme.colorScheme,
+    darkColorScheme: ColorScheme = MaterialTheme.colorScheme
+) {
     Card(
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primary
+            containerColor = if (isSystemInDarkTheme()) {
+                Color(0xFFFFEB3B)
+            } else {
+                Color(0x5BFFEB3B)
+            }
         ),
         modifier = modifier.padding(vertical = 4.dp, horizontal = 8.dp)
     ) {
